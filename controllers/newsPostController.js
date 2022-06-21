@@ -1,23 +1,15 @@
 const mongoose = require('mongoose');
 const NewsPost = require('../models/newsPost');
 
-/**
- * 
- * const url = 'mongodb+srv://CitizenSnipz:jrWtJEVA1OJpyd2g@cluster0.tmwh9.mongodb.net/news?retryWrites=true&w=majority'
-mongoose.connect(url).then(() => {
-    console.log('Connected to DB');
-}).catch(() => {
-    console.log('Connection to DB failed!');
-});
- * 
- */
+
 
 
 const createNewsPost = async (req, res, next) => {
+    console.log('news post was called!')
     const createdNewsPost = new NewsPost({
         title: req.body.title,
         date: req.body.date,
-        img: req.body.img,
+        img: req.file.path,
         content: req.body.content,
     });
 
@@ -59,7 +51,7 @@ const getNewsPostById = async (req, res, next) => {
 
 const getNewsPosts = async (req, res, next) => {
     const newsPosts = await NewsPost.find().exec();
-    console.log('Get was called!', newsPosts);
+    console.log('news post get was called!', newsPosts);
     res.json(newsPosts);
 }
 
