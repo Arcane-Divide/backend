@@ -51,7 +51,6 @@ const getNewsPostById = async (req, res, next) => {
 
 const getNewsPosts = async (req, res, next) => {
     const newsPosts = await NewsPost.find().exec();
-    console.log('news post get was called!', newsPosts);
     res.json(newsPosts);
 }
 
